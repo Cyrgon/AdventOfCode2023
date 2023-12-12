@@ -80,6 +80,7 @@ func day12b() {
         sum += c
     }
     print(sum)
+    print(glob)
 }
 
 // This is the most messy unmaintanable shit ever
@@ -102,11 +103,9 @@ func calc3(springs: String, numbers: [Int], res: inout [String: Int]) -> Int {
     }
     for i in 0 ..< springs.count {
         if springs[i] == "." {
-            if i == springs.count - 1 {
-                return 0
-            } else {
-                continue
-            }
+            let r = calc3(springs: String(springs[1...]), numbers: numbers, res: &res)
+            res[key] = r
+            return r
         } else if springs[i] == "#" {
             let newPos = i + numbers[0]
             if springs.count > newPos {
@@ -153,43 +152,8 @@ func calc3(springs: String, numbers: [Int], res: inout [String: Int]) -> Int {
                 return 0
             }
         } else { //?
-            var possible = 0
-            let newPos = i + numbers[0]
-            if springs.count > newPos {
-                var ok = true
-                for j in i ..< i + numbers[0] {
-                    if springs[j] == "." {
-                        ok = false
-                        break
-                    }
-                }
-                if ok {
-                    if springs.count == newPos {
-                        let r = numbers.count == 1 ? 1 : 0
-                        possible = r
-                    } else if springs[newPos] == "#" {
-                        possible = 0
-                    } else {
-                        if numbers.count > 1 {
-                            possible = calc3(springs: String(springs[(newPos + 1)...]), numbers: Array(numbers[1...]), res: &res)
-                        } else {
-                            if springs[newPos...].allSatisfy({ $0 == "." || $0 == "?" }) {
-                                possible = 1
-                            } else {
-                                possible = 0
-                            }
-                        }
-                    }
-                } else {
-                    possible = 0
-                }
-            } else if springs.count == newPos && numbers.count == 1 {
-                possible = springs[i...].allSatisfy { $0 == "#" || $0 == "?" } ? 1 : 0
-            } else {
-                possible = 0
-            }
             if let d = springs.distance(of: "?") {
-                let r = possible + calc3(springs: String(springs[(d + 1)...]), numbers: numbers, res: &res)
+                let r = calc3(springs: "#" + String(springs[(d + 1)...]), numbers: numbers, res: &res) + calc3(springs: String(springs[(d + 1)...]), numbers: numbers, res: &res)
                 res[key] = r
                 return r
             } else {
