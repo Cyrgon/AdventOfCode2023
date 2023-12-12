@@ -9,6 +9,6 @@ import Foundation
 
 // Remember to copy the input files to the build folder
 let startTime = Date()
-day9bRec()
+day12b()
 
 print("Execution time: \(Date.now.timeIntervalSince(startTime))")
