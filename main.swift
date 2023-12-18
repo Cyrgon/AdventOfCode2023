@@ -7,8 +7,8 @@
 
 import Foundation
 
-// Remember to copy the input files to the build folder
+// Remember to copy the input fibes to the build folder
 let startTime = Date()
-day12b()
+day18b()
 
 print("Execution time: \(Date.now.timeIntervalSince(startTime))")

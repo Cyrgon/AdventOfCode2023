@@ -78,3 +78,26 @@ extension Collection {
         return indices.contains(index) ? self[index] : nil
     }
 }
+
+extension Array where Self: Equatable {
+    
+    //Detects cycles from the end
+    func detectCycle() -> Int? {
+        for rep in stride(from: count / 2 - 1, to: 0, by: -1) {
+            var found = true
+            for k in stride(from: count - 1, through: rep, by: -rep) {
+                for i in 0 ..< rep {
+                    if self[k - i] != self[k - i - rep] {
+                        found = false
+                        break
+                    }
+                }
+                if found {
+                    return rep
+                }
+            }
+        }
+
+        return nil
+    }
+}

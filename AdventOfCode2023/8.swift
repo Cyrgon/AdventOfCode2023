@@ -67,7 +67,6 @@ func day8b() {
             }
             c += 1
             
-            var key = next[i] + String(sequence[(c % sequence.count)...])
             if next[i].last == "Z" {
                 if res > 0 {
                     result[start[i]] = [res, c - res]

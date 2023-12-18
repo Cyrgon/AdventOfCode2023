@@ -30,7 +30,7 @@ func day4a() {
 }
 
 func day4b() {
-    var numbers = Array(readRegExNumbers(name: "4").reversed())
+    let numbers = Array(readRegExNumbers(name: "4").reversed())
     
     var map: [Int: Int] = [:]
     for row in numbers {

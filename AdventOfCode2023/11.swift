@@ -86,7 +86,7 @@ func day11b() {
         }
     }
     
-    var extra = 999999
+    let extra = 999999
     
     var sum = 0
     for i in 0 ..< galaxies.count - 1 {

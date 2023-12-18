@@ -149,4 +149,18 @@ struct Algorithms {
         
         return []
     }
+    
+    static func area(_ points: [CGPoint]) -> Double {
+        var area = 0.0
+        let numPoints = points.count
+
+        for i in 0 ..< numPoints {
+            let j = (i + 1) % numPoints
+            area += (points[i].x * points[j].y)
+            area -= (points[j].x * points[i].y)
+        }
+
+        area = abs(area) / 2.0
+        return area
+    }
 }

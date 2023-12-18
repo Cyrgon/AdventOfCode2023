@@ -37,6 +37,10 @@ func readTextLines(name: String, ignoreEmptyLines: Bool = true) -> [String] {
     }
 }
 
+func readCharacters(name: String, ignoreEmptyLines: Bool = true) -> [[Character]] {
+    return readTextLines(name: name, ignoreEmptyLines: ignoreEmptyLines).map { Array($0) }
+}
+
 protocol EncodeFromString {
     associatedtype T
     static func encodeFrom(_ str: String) -> T?
